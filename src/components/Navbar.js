@@ -5,7 +5,7 @@ export class Navbar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light bg-light">
                 <div className="container-fluid">
-                <a className="navbar-brand" href="/">Navbar</a>
+                <a className="navbar-brand" href="/">lastest News</a>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span className="navbar-toggler-icon"></span>
                 </button>
@@ -14,9 +14,14 @@ export class Navbar extends Component {
                     <li className="nav-item">
                         <a className="nav-link" aria-current="page" href="/news">News</a>
                     </li>
-                    <li className="nav-item">
-                        <a className="nav-link" href="/about">About</a>
-                    </li>
+                    <li className="nav-item"><a className="nav-link" href="/about">About</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/business">Business</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/entertainment">Entertainment</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/general">General</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/health">Health</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/science">Science</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/sports">Sports</a></li>
+                    <li className="nav-item"><a className="nav-link" href="/technology">Technology</a></li>
                     </ul>
                 </div>
                 </div>
