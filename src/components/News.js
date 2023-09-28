@@ -1,8 +1,6 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
-import {createBrowserRouter,RouterProvider,Route} from "react-router-dom";
-
 export class News extends Component {
 
     static defaultProps = {
@@ -1338,7 +1336,7 @@ export class News extends Component {
     handleOnNext = async ()=>{
 
         if(!(this.state.page + 1 > Math.ceil(this.state.totalResults/this.props.pageSize))){
-            let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=3f2027e161094ecdb46d1531bf75bb27&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+            let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3f2027e161094ecdb46d1531bf75bb27&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
             this.setState({dataLoading:true})
             let data = await fetch(url);
             let parsedData = await data.json();
@@ -1354,7 +1352,7 @@ export class News extends Component {
 
     handleOnprev = async ()=>{
         console.log('Prev')
-        let url = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=3f2027e161094ecdb46d1531bf75bb27&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=3f2027e161094ecdb46d1531bf75bb27&page=${this.state.page + 1}&pageSize=${this.props.pageSize}`;
         this.setState({dataLoading:true})
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -1381,7 +1379,7 @@ export class News extends Component {
                         {!this.state.dataLoading && this.state.articles.map((elemets)=>{
                             return(
                                 <div className="col-lg-4" key={elemets.url}>
-                                    <NewsItem title={elemets.title} description={elemets.description ? elemets.description : 'Click to Read this News'} ImageUrl={elemets.urlToImage ? elemets.urlToImage : 'https://media.istockphoto.com/id/1182477852/photo/breaking-news-world-news-with-map-backgorund.jpg?s=612x612&w=0&k=20&c=SQfmzF39HZJ_AqFGosVGKT9iGOdtS7ddhfj0EUl0Tkc='} readMore="Read More" newsUrl={elemets.url}/>
+                                    <NewsItem title={elemets.title} description={elemets.description ? elemets.description : 'Click to Read this News'} ImageUrl={elemets.urlToImage ? elemets.urlToImage : 'https://media.istockphoto.com/id/1182477852/photo/breaking-news-world-news-with-map-backgorund.jpg?s=612x612&w=0&k=20&c=SQfmzF39HZJ_AqFGosVGKT9iGOdtS7ddhfj0EUl0Tkc='} readMore="Read More" newsUrl={elemets.url} author={elemets.author} date={elemets.publishedAt} source={elemets.source.name} />
                                 </div>
                             )
                         })}
