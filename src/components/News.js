@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import NewsItem from './NewsItem';
 import Spinner from './Spinner';
-import PropTypes from 'prop-types';
+import {createBrowserRouter,RouterProvider,Route} from "react-router-dom";
 
 export class News extends Component {
 
@@ -11,11 +11,6 @@ export class News extends Component {
         category : 'business',
     }
 
-    static PropTypes = {
-        category: PropTypes.string,
-        pageSize : PropTypes.number,
-        country : PropTypes.string,
-    }
 
 
     // articles =  [
