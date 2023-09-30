@@ -4,6 +4,7 @@ import Spinner from './Spinner';
 import InfiniteScroll from "react-infinite-scroll-component";
 
 
+
 export class News extends Component {
 
     static defaultProps = {
@@ -1320,7 +1321,7 @@ export class News extends Component {
 
     capitalizeFirstLetter(str) {
         return str[0].toUpperCase() + str.slice(1);
-      }
+    }
 
     constructor(props){
         super(props);
@@ -1336,11 +1337,15 @@ export class News extends Component {
     }
 
     async updateNews(){
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2d0c3b40e90646dba952692f75d6a9a0&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        this.props.setProgress(10);
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({dataLoading:true})
         let data = await fetch(url);
+        this.props.setProgress(30);
         let parsedData = await data.json();
+        this.props.setProgress(70);
         this.setState({ articles: parsedData.articles , totalResults: parsedData.totalResults , dataLoading:false});
+        this.props.setProgress(100);
     }
 
 
@@ -1354,8 +1359,8 @@ export class News extends Component {
     }
 
     fetchMoreData = async () => {
-        this.setState({page: this.state.page + 1});
-        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=2d0c3b40e90646dba952692f75d6a9a0&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+        this.setState({page: this.state.page + 1 ? this.state.page + 1 : this.state.page, });
+        let url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
         this.setState({dataLoading:true})
         let data = await fetch(url);
         let parsedData = await data.json();
@@ -1403,7 +1408,7 @@ export class News extends Component {
             <>
             <div className="container">
                 <div className="row">
-                    <h1 className='text-center'>Top Headlines Of {this.capitalizeFirstLetter(this.props.country)} Form {this.capitalizeFirstLetter(this.props.category)}  News</h1>
+                    <h1 className="text-center">Top Headlines Of {this.capitalizeFirstLetter(this.props.country)} Form {this.capitalizeFirstLetter(this.props.category)}  News</h1>
                     <div className='text-center'>
                     </div>
                     <InfiniteScroll
