@@ -1,30 +1,27 @@
-import React, { Component } from 'react';
+import React, {useState} from 'react';
 import {Link} from 'react-router-dom';
 
-export class Navbar extends Component {
-    constructor(props){
-        super(props)
-        this.state = {
-            dark: 'Dark',
-            color: 'light'
-        }
-    }
+const Navbar = () => {
 
-    darkMode = ()=> {
-        if(this.state.color === 'light'){
-            this.setState({dark: 'Light', color: 'dark'});
+    const [dark, setDark] = useState('Dark');
+    const [color, setColor] = useState('light');
+
+    const darkMode = ()=> {
+        if(color === 'light'){
+            setDark('Light');
+            setColor('dark')
             document.body.style.backgroundColor = 'black'
         }
         else{
-            this.setState({dark: 'Dark', color: 'light'});
+            setDark('Dark');
+            setColor('light')
             document.body.style.backgroundColor = 'white'
         }
     }
 
-    render() {
         return (
             <>
-            <nav className = {`navbar navbar-expand-lg navbar-${this.state.color} bg-${this.state.color} sticky-lg-top sticky-md-top sticky-xl-top sticky-xxl-top sticky-sm-top`}>
+            <nav className = {`navbar navbar-expand-lg navbar-${color} bg-${color} sticky-lg-top sticky-md-top sticky-xl-top sticky-xxl-top sticky-sm-top`}>
                 <div className="container-fluid">
                 <Link className="navbar-brand" to="/" >lastest News</Link>
                 <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -41,14 +38,13 @@ export class Navbar extends Component {
                     </ul>
                 </div>
                 <div className="form-check form-switch">
-                    <input className="form-check-input" onClick={this.darkMode} type="checkbox" id="flexSwitchCheckDefault"/>
-                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault">{this.state.dark}</label>
+                    <input className="form-check-input" onClick={darkMode} type="checkbox" id="flexSwitchCheckDefault"/>
+                    <label className="form-check-label" htmlFor="flexSwitchCheckDefault" style={{ color : color === 'light' ? 'black' : 'white' }}>{dark}</label>
                 </div>
                 </div>
             </nav>
             </>
         )
-    }
 }
 
 export default Navbar

@@ -1,10 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 
-export class NewsItem extends Component {
+    const NewsItem = (props)=> {
 
-    
-    render() {
-        let {title, description , ImageUrl, readMore , alt , newsUrl,author, date, source} = this.props
+        let {title, description , ImageUrl, readMore , alt , newsUrl,author, date, source} = props
         return (
             <div className="card my-3 position-relative">
                 <span className="badge bg-danger position-absolute end-0">Source : {source ? source : 'Unknown'}</span>
@@ -16,11 +14,10 @@ export class NewsItem extends Component {
                             <p>By : {author ? author : 'Unknown'} & Upload : {new Date(date).toGMTString()} </p>
                             {/* <p>By {author ? author : 'Unknown'} & Upload {[new Date(date).toLocaleDateString() , " ", new Date(date).toLocaleTimeString()]} </p> */}
                         </div>
-                        <a rel="noreferrer" href={newsUrl} target='_blank' className="btn btn-primary">{readMore}</a>
+                        <a rel="noreferrer" href={newsUrl} target='_blank' className="btn btn-dark">{readMore}</a>
                     </div>
             </div>
         )
-    }
 }
 
 export default NewsItem
